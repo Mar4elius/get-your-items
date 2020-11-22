@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const path = require("path");
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
         globalStyles: false
     })
     .postCss('resources/css/app.css', 'public/css', [
-        //
+        require('tailwindcss'),
     ]);
 
 // New Alias plugin
