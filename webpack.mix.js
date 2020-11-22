@@ -1,6 +1,6 @@
-const mix = require('laravel-mix');
-const path = require("path");
-const tailwindcss = require('tailwindcss');
+const mix = require('laravel-mix')
+const path = require('path')
+const tailwindcss = require('tailwindcss')
 
 /*
  |--------------------------------------------------------------------------
@@ -17,13 +17,25 @@ mix.js('resources/js/app.js', 'public/js')
     .vue({
         version: 3,
         extractStyles: true,
-        globalStyles: false
+        globalStyles: false,
     })
-    .postCss('resources/css/app.css', 'public/css', [
-        require('tailwindcss'),
-    ]);
+    .postCss('resources/css/app.css', 'public/css', [tailwindcss])
 
 // New Alias plugin
 mix.alias({
-    "@": path.resolve("resources/js"),
-});
+    '@': path.resolve('resources/js'),
+})
+
+// config eslint
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                enforce: 'pre',
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                test: /\.(js|vue)?$/,
+            },
+        ],
+    },
+})
