@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const path = require("path");
 
 /*
  |--------------------------------------------------------------------------
@@ -12,6 +13,16 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue({
+        version: 3,
+        extractStyles: true,
+        globalStyles: false
+    })
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+// New Alias plugin
+mix.alias({
+    "@": path.resolve("resources/js"),
+});
